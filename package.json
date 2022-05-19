@@ -1,0 +1,24 @@
+{
+  "name": "goit-js-hw-11",
+  "version": "1.0.0",
+  "description": "JS homework #11",
+  "main": "app.js",
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build --public-url /goit-js-hw-11/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alestrella/goit-js-hw-11.git"
+  },
+  "author": "Alexandra S <github.com/alestrella>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alestrella/goit-js-hw-11/issues"
+  },
+  "homepage": "https://alestrella.github.io/goit-js-hw-11",
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  }
+}
