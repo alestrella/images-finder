@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "JS homework #11",
   "source": "src/index.html",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "parcel",
     "build": "parcel build --public-url /goit-js-hw-11/"
@@ -19,5 +20,10 @@
   "homepage": "https://alestrella.github.io/goit-js-hw-11",
   "devDependencies": {
     "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "notiflix": "^3.2.5",
+    "simplelightbox": "^2.10.3"
   }
 }
