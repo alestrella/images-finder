@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JS homework #11",
   "source": "src/index.html",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "dev": "parcel",
     "build": "parcel build --public-url /goit-js-hw-11/"
