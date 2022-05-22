@@ -1,28 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>Search Image</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+    integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <title>Search Image</title>
+</head>
+
+<body>
+  <header class="header">
     <div class="container">
+      <h1 class="header__title">ImagesFinder<span class="header__subtitle">.app</span></h1>
+
       <!-- Search form -->
       <form class="search-form" id="search-form">
-        <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-        <button class="search-btn" type="submit">
-          <svg class="search-icon">
+        <input class="search-form__input" type="text" name="searchQuery" autocomplete="off"
+          placeholder="Enter something..." />
+        <button class="search-form__btn" type="submit">
+          <svg class="btn__icon">
             <use href="./images/icons.svg#icon-search"></use>
           </svg>
         </button>
       </form>
     </div>
+  </header>
 
-    <div class="gallery">
-      <!-- Image cards -->
+  <main class="main">
+    <section class="section">
+
+      <div class="container">
+
+        <div class="gallery">
+          <!-- Image cards -->
+
+          <!-- Template image card -->
+          <div class="photo-card">
+            <img src="" alt="" loading="lazy" />
+            <div class="info">
+              <p class="info-item">
+                <b>Likes</b>
+              </p>
+              <p class="info-item">
+                <b>Views</b>
+              </p>
+              <p class="info-item">
+                <b>Comments</b>
+              </p>
+              <p class="info-item">
+                <b>Downloads</b>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <button type="button" class="load-more__btn js-hidden">Load more</button>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">Developed by
+        <a class="footer__link" href="https://github.com/alestrella" target="_blank">ALESTRELLA</a>
+      </p>
     </div>
+  </footer>
 
-    <script src="./index.js" type="module"></script>
-  </body>
+  <script src="./index.js"></script>
+</body>
+
 </html>

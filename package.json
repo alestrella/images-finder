@@ -1,28 +1,31 @@
 {
   "name": "goit-js-hw-11",
-  "version": "1.0.0",
-  "description": "JS homework #11",
-  "source": "src/index.html",
+  "version": "1.1.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel",
-    "build": "parcel build --public-url /goit-js-hw-11/"
+    "dev": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alestrella/goit-js-hw-11.git"
   },
-  "author": "Alexandra S <github.com/alestrella>",
+  "keywords": [],
+  "author": "Alexandra <github.com/alestrella>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alestrella/goit-js-hw-11/issues"
   },
   "homepage": "https://alestrella.github.io/goit-js-hw-11",
   "devDependencies": {
-    "parcel": "^2.5.0"
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-handlebars-precompile": "^1.0.2",
+    "parcel-plugin-nuke-dist": "^1.0.1",
+    "posthtml-include": "^1.7.4"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^0.26.1",
     "notiflix": "^3.2.5",
     "simplelightbox": "^2.10.3"
   }
