@@ -17,50 +17,19 @@ async function handleImageSearch(evt) {
   evt.preventDefault();
 
   imageFinderApi.query = evt.currentTarget.elements.searchQuery.value;
-
-  renderGallery.showPreloader();
-  renderGallery.clearGallery();
-  imageFinderApi.resetPage();
-
   const response = await imageFinderApi.fetchImages();
-  renderGallery.hidePreloader();
-
-  if (response.hits.length === 0) {
-    return Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.',
-    );
-  }
-  if (imageFinderApi.query === '') {
-    return Notify.warning('Please, enter your request');
-  }
-  notifyTotalHits(response.totalHits);
-  renderGallery.generateMarkupGallery(response);
+  generateMarkupPage(response);
 }
 
 async function handleLoadMore() {
   renderGallery.hideLoadBtn();
   renderGallery.showPreloader();
 
-  const nextDataSet = await imageFinderApi.fetchImages();
-  renderGallery.generateMarkupGallery(nextDataSet);
+  const nextImgSet = await imageFinderApi.fetchImages();
+  renderGallery.generateMarkupGallery(nextImgSet);
 
-  checkEndDataSet(nextDataSet);
-  makeSmothScroll();
-}
-
-function notifyTotalHits(totalHits) {
-  return Notify.info(`Hooray! We found ${totalHits} images.`);
-}
-
-function makeSmothScroll() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * 2,
-    behavior: 'smooth',
-  });
+  checkEndDataSet(nextImgSet);
+  makeSmothScrollDown();
 }
 
 function checkEndDataSet(dataSet) {
@@ -68,8 +37,49 @@ function checkEndDataSet(dataSet) {
     const textWarning = document.createElement('p');
     textWarning.classList.add('end-gallery');
     textWarning.innerText = "We're sorry, but you've reached the end of search results.";
-    refs.loadMoreBtn.insertAdjacentElement('beforebegin', textWarning);
+    refs.contentBottom.append(textWarning);
 
     renderGallery.hideLoadBtn();
   }
+}
+
+function makeSmothScrollDown() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 1.5,
+    behavior: 'smooth',
+  });
+}
+
+function makeSmothScrollTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
+function generateMarkupPage(data) {
+  imageFinderApi.resetPage();
+  renderGallery.clearContent();
+  renderGallery.hidePreloader();
+  makeSmothScrollTop();
+
+  console.log('result', data);
+
+  if (data.hits.length === 0) {
+    return Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.',
+    );
+  }
+  if (imageFinderApi.query === '') {
+    return Notify.warning('Please, enter your request');
+  }
+  if (data.total >= 1) {
+    Notify.success(`Hooray! We found ${data.total} images.`);
+  }
+
+  renderGallery.generateMarkupGallery(data);
 }

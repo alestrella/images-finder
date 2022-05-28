@@ -1,6 +1,6 @@
 :root {
     --main-color: #f5f5f5;
-    --text-color: #3c3c3c;
+    --text-color: #6a6a6a;
     --accent-color: rgba(0, 212, 255, 1);
     --bg-color-form: rgba(255, 255, 255, 0.2);
     --bg-color-hover: #181818;
@@ -52,6 +52,8 @@ button {
     width: 100%;
     background: var(--bg-gradient);
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+
+    z-index: 10;
 }
 
 
@@ -174,14 +176,16 @@ button {
 .photo-card-link {
     display: block;
     color: var(--bg-color-hover);
+    transform: scale(1);
 
-    transition: box-shadow var(--duration);
+    transition: box-shadow var(--duration), transform var(--duration);
 }
 
 .photo-card-link:hover,
 .photo-card-link:focus {
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
         1px 4px 6px rgba(0, 0, 0, 0.16);
+    transform: scale(1.02);
 }
 
 .info {
@@ -195,7 +199,7 @@ button {
     flex-direction: column;
     padding: 0px 8px;
     font-size: 14px;
-    line-height: 1.5em;
+    line-height: 1.4em;
     color: var(--text-color);
     background-color: #eee;
     border-radius: 2px;

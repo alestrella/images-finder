@@ -28,8 +28,12 @@ export function generateMarkupGallery(data) {
   refs.galleryBox.insertAdjacentHTML('beforeend', imgCards);
 
   hidePreloader();
-  showLoadBtn();
   lightbox.refresh();
+
+  if (data.hits.length < 40) {
+    return hideLoadBtn;
+  }
+  showLoadBtn();
 }
 
 export function showLoadBtn() {
@@ -48,8 +52,8 @@ export function hidePreloader() {
   refs.preloader.classList.add('js-hidden');
 }
 
-export function clearGallery() {
+export function clearContent() {
   refs.galleryBox.innerHTML = '';
+  refs.contentBottom.innerHTML = '';
+  hideLoadBtn();
 }
-
-// export function
