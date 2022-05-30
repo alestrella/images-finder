@@ -35,21 +35,18 @@
   <main class="main">
     <section class="section">
       <div class="container">
-
-        <div class="gallery">
-          <!-- Image cards -->
-
-        </div>
-
-        <button type="button" class="load-more-btn js-hidden">Load more</button>
-        <div class="content-bottom"></div>
         <!-- Preloader -->
-        <div class="lds-ripple preloader js-hidden">
+        <div class="lds-ripple js-hidden" id="preloader">
           <div></div>
           <div></div>
         </div>
       </div>
 
+      <div class="gallery">
+        <!-- Image cards -->
+      </div>
+
+      <div class="sentinel"></div>
     </section>
   </main>
 
@@ -61,7 +58,7 @@
     </div>
   </footer>
 
-  <script src="./index.js" defer></script>
+  <script src="./index.js"></script>
 </body>
 
 </html>
