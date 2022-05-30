@@ -10,10 +10,12 @@ Notify.init({
   closeButton: false,
 });
 
+let observer;
+
 document.addEventListener('DOMContentLoaded', () => {
   refs.searchForm.addEventListener('submit', handleImageSearch);
 
-  const observer = new IntersectionObserver(handleEntry, { rootMargin: '0px 0px 200px 0px' });
+  observer = new IntersectionObserver(handleEntry, { rootMargin: '0px 0px 200px 0px' });
   observer.observe(refs.sentinel);
 });
 
@@ -49,6 +51,21 @@ async function handleImageSearch(evt) {
   }
 }
 
+function checkEndGallery(totalHits) {
+  const totalPage = Math.ceil(totalHits / 40);
+  let textWarning;
+
+  if (imageFinder.page - 1 > totalPage) {
+    textWarning = document.createElement('p');
+    textWarning.classList.add('end-gallery');
+    textWarning.innerText = "We're sorry, but you've reached the end of search results.";
+    refs.galleryBox.append(textWarning);
+  }
+  if (refs.galleryBox.contains(textWarning)) {
+    observer.unobserve(refs.sentinel);
+  }
+}
+
 function makeSmothScroll() {
   if (imageFinder.page - 1 > 1) {
     const { height: cardHeight } = document
@@ -69,7 +86,7 @@ async function handleEntry(entries) {
       const { hits, totalHits } = response;
       renderGallery.drawCard(hits);
       makeSmothScroll();
-      renderGallery.checkEndGallery(totalHits);
+      checkEndGallery(totalHits);
     }
   }
 }
