@@ -1,6 +1,6 @@
 import imageFinder from './api-service';
-import { refs } from './refs';
 import renderGallery from './render-gallery';
+import { refs } from './refs';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -13,7 +13,7 @@ Notify.init({
 document.addEventListener('DOMContentLoaded', () => {
   refs.searchForm.addEventListener('submit', handleImageSearch);
 
-  const observer = new IntersectionObserver(handleEntry, { rootMargin: '200px' });
+  const observer = new IntersectionObserver(handleEntry, { rootMargin: '0px 0px 200px 0px' });
   observer.observe(refs.sentinel);
 });
 
@@ -22,13 +22,14 @@ async function handleImageSearch(evt) {
 
   imageFinder.resetPage();
   renderGallery.clear();
-  window.scrollTo({ top: 0 });
-  renderGallery.showPreloader();
   imageFinder.query = evt.currentTarget.elements.searchQuery.value;
 
   if (imageFinder.query === '') {
     return Notify.warning('Please, enter your request');
   }
+
+  window.scrollTo({ top: 0 });
+  renderGallery.showPreloader();
 
   try {
     const response = await imageFinder.fetchImages();
@@ -55,20 +56,20 @@ function makeSmothScroll() {
       .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-      top: cardHeight * 1.75,
+      top: cardHeight * 1.9,
       behavior: 'smooth',
     });
   }
 }
 
-function handleEntry(entries) {
-  entries.forEach(entry => {
+async function handleEntry(entries) {
+  for (const entry of entries) {
     if (entry.isIntersecting && imageFinder.query !== '') {
-      imageFinder
-        .fetchImages()
-        .then(response => response.hits)
-        .then(renderGallery.drawCard);
+      const response = await imageFinder.fetchImages();
+      const { hits, totalHits } = response;
+      renderGallery.drawCard(hits);
       makeSmothScroll();
+      renderGallery.checkEndGallery(totalHits);
     }
-  });
+  }
 }

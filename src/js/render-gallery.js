@@ -1,6 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './refs';
+import imageFinder from './api-service';
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
@@ -27,6 +28,17 @@ class MarkupGallery {
 
     refs.galleryBox.insertAdjacentHTML('beforeend', imgCards);
     lightbox.refresh();
+  }
+
+  checkEndGallery(totalHits) {
+    const totalPage = Math.ceil(totalHits / 40);
+
+    if (imageFinder.page - 1 > totalPage) {
+      const textWarning = document.createElement('p');
+      textWarning.classList.add('end-gallery');
+      textWarning.innerText = "We're sorry, but you've reached the end of search results.";
+      refs.galleryBox.append(textWarning);
+    }
   }
 
   clear() {
