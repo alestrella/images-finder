@@ -47,7 +47,7 @@ async function handleImageSearch(evt) {
     Notify.success(`Hooray! We found ${totalHits} images.`);
   } catch (error) {
     Notify.failure(error);
-    if (refs.introText.classList.matches('js-hidden')) {
+    if (refs.introText.matches('.js-hidden')) {
       refs.introText.classList.remove('js-hidden');
     }
     refs.introText.classList.add('js-hidden');
@@ -78,7 +78,7 @@ function makeSmothScroll() {
       .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-      top: cardHeight * 2,
+      top: cardHeight * 1.8,
       behavior: 'smooth',
     });
   }
@@ -86,7 +86,7 @@ function makeSmothScroll() {
 
 async function handleEntry(entries) {
   for (const entry of entries) {
-    if (entry.isIntersecting && imageFinder.query !== '') {
+    if (entry.isIntersecting && imageFinder.query !== '' && imageFinder.page > 1) {
       const response = await imageFinder.fetchImages();
       const { hits, totalHits } = response;
       renderGallery.drawCard(hits);
