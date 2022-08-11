@@ -41,11 +41,16 @@ async function handleImageSearch(evt) {
       throw 'Sorry, there are no images matching your search query. Please try again.';
     }
 
+    refs.introText.classList.add('js-hidden');
     renderGallery.showPreloader();
     renderGallery.drawCard(hits);
     Notify.success(`Hooray! We found ${totalHits} images.`);
   } catch (error) {
     Notify.failure(error);
+    if (refs.introText.classList.matches('js-hidden')) {
+      refs.introText.classList.remove('js-hidden');
+    }
+    refs.introText.classList.add('js-hidden');
   } finally {
     renderGallery.hidePreloader();
   }
@@ -73,7 +78,7 @@ function makeSmothScroll() {
       .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-      top: cardHeight * 1.9,
+      top: cardHeight * 2,
       behavior: 'smooth',
     });
   }

@@ -1,23 +1,23 @@
 {
-  "name": "goit-js-hw-11",
+  "name": "images-finder",
   "version": "1.1.0",
   "description": "",
   "main": "js/index.js",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
+    "build": "parcel build src/*.html --public-url /images-finder/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alestrella/goit-js-hw-11.git"
+    "url": "git+https://github.com/alestrella/images-finder.git"
   },
   "keywords": [],
   "author": "Alexandra <github.com/alestrella>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alestrella/goit-js-hw-11/issues"
+    "url": "https://github.com/alestrella/images-finder/issues"
   },
-  "homepage": "https://alestrella.github.io/goit-js-hw-11",
+  "homepage": "https://alestrella.github.io/images-finder",
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",

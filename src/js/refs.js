@@ -3,4 +3,5 @@ export const refs = {
   galleryBox: document.querySelector('.gallery'),
   preloader: document.querySelector('#preloader'),
   sentinel: document.querySelector('.sentinel'),
+  introText: document.querySelector('.intro-text'),
 };

@@ -35,6 +35,7 @@ class MarkupGallery {
 
   showPreloader() {
     refs.preloader.classList.remove('js-hidden');
+    refs.introText.classList.add('js-hidden');
   }
 
   hidePreloader() {
